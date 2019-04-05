@@ -26,8 +26,7 @@ app.get('/API/info/:code', (req, res) => {
     CRUD.getInfo(req, res);
 });
 
-app.listen(process.env.PORT || 8081, () => {
-    testId = 1;
-    console.log(`Listening on :${process.env.PORT || 8081}`);
+app.listen(8081, () => {
+    console.log(`Listening on :8081`);
 });
 
