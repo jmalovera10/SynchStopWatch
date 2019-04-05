@@ -34,7 +34,7 @@ app.get('/API/info/:code', (req, res) => {
     CRUD.getInfo(req, res);
 });
 
-app.listen(8081, () => {
-    console.log(`Listening on :8081`);
+app.listen(process.env.PORT||5000, () => {
+    console.log(`Listening on :${process.env.PORT||5000}`);
 });
 
