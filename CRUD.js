@@ -93,7 +93,7 @@ exports.postStop = (req, res) => {
                 return res.status(500);
             }
             return res.status(200).json({
-                message: 'Started'
+                message: 'Stopped'
             });
         });
     });
@@ -115,7 +115,7 @@ exports.postReset = (req, res) => {
                 return res.status(500);
             }
             return res.status(200).json({
-                message: 'Started'
+                message: 'Reset'
             });
         });
     });

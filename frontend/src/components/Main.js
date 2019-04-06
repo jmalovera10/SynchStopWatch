@@ -69,17 +69,18 @@ export default class Main extends Component {
         let code = undefined;
         let cookies = new Cookies();
         if(code_url!==''){
-
             code = code_url
         }else{
             code = cookies.get("STOPWATCH_CODE", {path: '/'});
         }
+        console.log(code);
         if (code) {
             axios.get(`/API/info/${code}`)
                 .then((res) => {
                     return res.data;
                 })
                 .then((res) => {
+                    console.log(res);
                     return res[0];
                 })
                 .then((data) => {
