@@ -6,8 +6,7 @@
     "client-install": "npm install --prefix frontend",
     "start": "node ./app",
     "server": "nodemon app.js",
-    "client": "npm start --prefix frontend",
-    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix frontend && npm run build --prefix frontend"
+    "heroku-postbuild": "cd frontend && npm install && npm run build"
   },
   "dependencies": {
     "body-parser": "~1.18.2",
@@ -18,7 +17,6 @@
     "express": "~4.15.5",
     "mongoose": "^5.4.22",
     "morgan": "~1.9.0",
-    "randomstring": "^1.1.5",
-    "socket.io": "^2.2.0"
+    "randomstring": "^1.1.5"
   }
 }
