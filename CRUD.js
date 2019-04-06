@@ -33,6 +33,7 @@ exports.getCode = (req, res) => {
     let instance = new StopWatch(config);
     instance.save((err)=>{
         if(err){
+            console.log(err);
             return res.status(500);
         }
         return res.status(200).json({
@@ -46,8 +47,76 @@ exports.getInfo = (req, res) => {
     let code = req.params.code;
     StopWatch.find({'code': code}, (err, stWatch) => {
         if (err) {
+            console.log(err);
             return res.status(500);
         }
         return res.status(200).json(stWatch);
+    });
+};
+
+exports.postStart = (req, res) => {
+    let code = req.params.code;
+    let initTimestamp = Date.now();
+    StopWatch.findOne({'code': code}, (err, stWatch) => {
+        if (err || !stWatch) {
+            console.log(err);
+            return res.status(500);
+        }
+        stWatch.startTime = initTimestamp;
+        stWatch.isStarted = true;
+        stWatch.save((err)=>{
+            if (err) {
+                console.log(err);
+                return res.status(500);
+            }
+            return res.status(200).json({
+                message: 'Started'
+            });
+        });
+    });
+};
+
+exports.postStop = (req, res) => {
+    let code = req.params.code;
+    let initTimestamp = Date.now();
+    StopWatch.findOne({'code': code}, (err, stWatch) => {
+        if (err) {
+            console.log(err);
+            return res.status(500);
+        }
+        stWatch.offset = initTimestamp - stWatch.startTime;
+        stWatch.startTime = undefined;
+        stWatch.isStarted = false;
+        stWatch.save((err)=>{
+            if (err) {
+                console.log(err);
+                return res.status(500);
+            }
+            return res.status(200).json({
+                message: 'Started'
+            });
+        });
+    });
+};
+
+exports.postReset = (req, res) => {
+    let code = req.params.code;
+    StopWatch.findOne({'code': code}, (err, stWatch) => {
+        if (err) {
+            console.log(err);
+            return res.status(500);
+        }
+        stWatch.offset = 0;
+        stWatch.startTime = undefined;
+        stWatch.isStarted = false;
+        stWatch.save((err)=>{
+            if (err) {
+                console.log(err);
+                return res.status(500);
+            }
+            return res.status(200).json({
+                message: 'Started'
+            });
+        });
     });
 };

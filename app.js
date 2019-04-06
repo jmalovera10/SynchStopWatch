@@ -8,6 +8,7 @@ const CRUD = require("./CRUD");
 
 const app = express();
 
+
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
@@ -29,9 +30,20 @@ app.get('/API/code', (req, res) => {
     CRUD.getCode(req, res);
 });
 
-
 app.get('/API/info/:code', (req, res) => {
     CRUD.getInfo(req, res);
+});
+
+app.post('/API/start/:code', (req, res) => {
+    CRUD.postStart(req, res);
+});
+
+app.post('/API/stop/:code', (req, res) => {
+    CRUD.postStop(req, res);
+});
+
+app.post('/API/reset/:code', (req, res) => {
+    CRUD.postReset(req, res);
 });
 
 app.listen(process.env.PORT||5000, () => {

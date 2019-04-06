@@ -17,4 +17,7 @@ form label {
   margin: 0 5px;
 }
 
-#root { min-height: 100vh }
+#root {
+  max-height: 100vh;
+}
+
