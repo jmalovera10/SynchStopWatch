@@ -84,7 +84,7 @@ exports.postStop = (req, res) => {
             console.log(err);
             return res.status(500);
         }
-        stWatch.offset = initTimestamp - stWatch.startTime;
+        stWatch.offset += initTimestamp - stWatch.startTime;
         stWatch.startTime = undefined;
         stWatch.isStarted = false;
         stWatch.save((err)=>{
